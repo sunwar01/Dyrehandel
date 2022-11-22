@@ -4,9 +4,9 @@ public class Vare {
     private int getVareNr;
     private String getVareBeskrivelse;
 
+    static int varenr = 1;
 
-
-    public Vare(int varenr, String varebeskrivelse){
+    public Vare(String varebeskrivelse){
 
         this.getVareNr = varenr;
         this.getVareBeskrivelse = varebeskrivelse;

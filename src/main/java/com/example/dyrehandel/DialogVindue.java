@@ -69,8 +69,17 @@ public class DialogVindue {
 
         Optional<Pair<String, String>> result = dialog.showAndWait();
 
-        result.ifPresent(usernamevarebeskrivelse -> {
-            System.out.println("Username=" + usernamevarebeskrivelse.getKey() + ", varebeskrivelse=" + usernamevarebeskrivelse.getValue());
-        });
+        result.ifPresent(vareBeskrivelse -> {
+            System.out.println("varenr=" + vareBeskrivelse.getKey() + ", varebeskrivelse=" + vareBeskrivelse.getValue());
+
+            Vare nyVare = new Vare( vareBeskrivelse.getValue());
+                    dyreHandelController.vareListe.add(nyVare);
+
+
+                }
+
+
+
+        );
     }
 }
