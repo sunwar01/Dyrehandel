@@ -35,34 +35,27 @@ public class DialogVindue {
         grid.setVgap(10);
         grid.setPadding(new Insets(20, 150, 10, 10));
 
-        TextField username = new TextField();
-        username.setPromptText("varenr");
+
         TextField varebeskrivelse = new TextField();
         varebeskrivelse.setPromptText("varebeskrivelse");
 
-        grid.add(new Label("varenr:"), 0, 0);
-        grid.add(username, 1, 0);
+
         grid.add(new Label("varebeskrivelse:"), 0, 1);
         grid.add(varebeskrivelse, 1, 1);
 
 // Enable/Disable login button depending on whether a username was entered.
         Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
-        loginButton.setDisable(true);
 
 // Do some validation (using the Java 8 lambda syntax).
-        username.textProperty().addListener((observable, oldValue, newValue) -> {
-            loginButton.setDisable(newValue.trim().isEmpty());
-        });
+
 
         dialog.getDialogPane().setContent(grid);
 
-// Request focus on the username field by default.
-        Platform.runLater(() -> username.requestFocus());
 
 // Convert the result to a username-varebeskrivelse-pair when the login button is clicked.
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == loginButtonType) {
-                return new Pair<>(username.getText(), varebeskrivelse.getText());
+                return new Pair<>(varebeskrivelse.getText(), varebeskrivelse.getText());
             }
             return null;
         });
@@ -72,11 +65,15 @@ public class DialogVindue {
         result.ifPresent(vareBeskrivelse -> {
             System.out.println("varenr=" + vareBeskrivelse.getKey() + ", varebeskrivelse=" + vareBeskrivelse.getValue());
 
+            if (!Objects.equals(vareBeskrivelse.getValue(), "")){
+
+
             Vare nyVare = new Vare( vareBeskrivelse.getValue());
                     dyreHandelController.vareListe.add(nyVare);
 
 
                 }
+        }
 
 
 

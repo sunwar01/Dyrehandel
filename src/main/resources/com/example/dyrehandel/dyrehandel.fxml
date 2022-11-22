@@ -8,8 +8,8 @@
       <ListView fx:id="listviewOrdre" layoutX="14.0" layoutY="94.0" onMouseClicked="#ordreValgt" prefHeight="200.0" prefWidth="210.0" />
       <ListView fx:id="listviewVare" layoutX="246.0" layoutY="94.0" prefHeight="200.0" prefWidth="160.0" />
       <ListView fx:id="listviewAlleVarer" layoutX="426.0" layoutY="94.0" prefHeight="200.0" prefWidth="160.0" />
-      <Button fx:id="tilføjVare" layoutX="480.0" layoutY="303.0" mnemonicParsing="false" onAction="#tilføjVareActionEvent" text="Tilføj vare" />
+      <Button fx:id="tilføjVare" layoutX="480.0" layoutY="303.0" mnemonicParsing="false" onAction="#tilføjVareActionEvent" text="Tilføj ny vare" />
       <Button fx:id="sletVare" layoutX="93.0" layoutY="303.0" mnemonicParsing="false" onAction="#sletVareActionEvent" text="Slet vare" />
-      <Button fx:id="tilføjVareTilOrdre" layoutX="300.0" layoutY="303.0" mnemonicParsing="false" onAction="#tilføjVareTilOrdre" text="Button" />
+      <Button fx:id="tilføjVareTilOrdre" layoutX="300.0" layoutY="303.0" mnemonicParsing="false" onAction="#tilføjVareTilOrdre" text="Tilføj vare" />
    </children>
 </Pane>

@@ -44,9 +44,14 @@ public class dyreHandelController {
 
     @FXML void tilføjVareTilOrdre(){
         System.out.println(listviewOrdre.getSelectionModel().getSelectedIndices().toString());
-        System.out.println(listviewOrdre.getSelectionModel().getSelectedIndices().toString());
+        System.out.println(listviewAlleVarer.getSelectionModel().getSelectedIndices().toString());
 
         Ordre denneOrdre = ordreListe.get( listviewOrdre.getSelectionModel().getSelectedIndices().get(0));
+        Vare denneVare = vareListe.get( listviewAlleVarer.getSelectionModel().getSelectedIndices().get(0));
+
+
+
+        denneOrdre.getOrdreVareListe().add(denneVare);
 
         //LinkedList<Vare> ordreVare = ordreListe.get();
         listviewVare.getItems().clear();
@@ -59,7 +64,7 @@ public class dyreHandelController {
         Ordre denneOrdre = ordreListe.get( listviewOrdre.getSelectionModel().getSelectedIndices().get(0));
         Vare denneVare = vareListe.get( listviewOrdre.getSelectionModel().getSelectedIndices().get(0));
 
-        denneOrdre.getOrdreVareListe().add(denneVare);
+        //denneOrdre.getOrdreVareListe().add(denneVare);
 
         listviewVare.getItems().clear();
         for (Vare vare: denneOrdre.getOrdreVareListe()) {
