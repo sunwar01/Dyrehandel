@@ -39,14 +39,28 @@ public class dyreHandelController {
     @FXML
     private Button tilføjVare;
 
+    @FXML
+    private Button tilføjVareTilOrdreKnap;
 
-    @FXML void ordreValgt (){
+    @FXML void tilføjVareTilOrdre(){
         System.out.println(listviewOrdre.getSelectionModel().getSelectedIndices().toString());
         System.out.println(listviewOrdre.getSelectionModel().getSelectedIndices().toString());
 
         Ordre denneOrdre = ordreListe.get( listviewOrdre.getSelectionModel().getSelectedIndices().get(0));
 
         //LinkedList<Vare> ordreVare = ordreListe.get();
+        listviewVare.getItems().clear();
+        for (Vare vare: denneOrdre.getOrdreVareListe()) {
+            listviewVare.getItems().add(vare.toString());
+        }
+    }
+
+    @FXML void ordreValgt (){
+        Ordre denneOrdre = ordreListe.get( listviewOrdre.getSelectionModel().getSelectedIndices().get(0));
+        Vare denneVare = vareListe.get( listviewOrdre.getSelectionModel().getSelectedIndices().get(0));
+
+        denneOrdre.getOrdreVareListe().add(denneVare);
+
         listviewVare.getItems().clear();
         for (Vare vare: denneOrdre.getOrdreVareListe()) {
             listviewVare.getItems().add(vare.toString());
@@ -61,6 +75,10 @@ public class dyreHandelController {
 
         denneOrdre.getOrdreVareListe().remove(denneVare);
 
+        listviewVare.getItems().clear();
+        for (Vare vare: denneOrdre.getOrdreVareListe()) {
+            listviewVare.getItems().add(vare.toString());
+        }
 
 
     }
