@@ -16,44 +16,26 @@ public class Ordre {
         this.KundeNavn = kundenavn;
         this.Dato = dato;
 
-        this.ordreVareListe = new LinkedList<Vare>();
+        this.ordreVareListe = new LinkedList<>();
 
     }
 
-    public int getOrdreNr() {
-        return OrdreNr;
-    }
 
-    public void setOrdreNr(int ordreNr) {
-        OrdreNr = ordreNr;
-    }
 
-    public String getKundeNavn() {
-        return KundeNavn;
-    }
 
-    public void setKundeNavn(String kundeNavn) {
-        KundeNavn = kundeNavn;
-    }
-
-    public int getDato() {
-        return Dato;
-    }
-
-    public void setDato(int dato) {
-        Dato = dato;
-    }
 
     public LinkedList<Vare> getOrdreVareListe() {
         return ordreVareListe;
     }
 
-    public void setOrdreVareListe(LinkedList<Vare> ordreVareListe) {
-        this.ordreVareListe = ordreVareListe;
-    }
+
 
     public void addOrdreVareListe(Vare vare) {
         this.ordreVareListe.add(vare);
+    }
+
+    public void removeVareFromOrdre(Vare vare) {
+        this.ordreVareListe.remove(vare);
     }
 
     public String toString(){

@@ -1,6 +1,5 @@
 package com.example.dyrehandel;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,20 +16,14 @@ public class dyreHandelController {
 
 
     @FXML
-    private ListView<String>  listviewOrdre = new ListView();
+    private ListView<Ordre>  listviewOrdre = new ListView<>();
 
     @FXML
-    private ListView<String> listviewVare = new ListView();
+    private ListView<Vare> listviewVare = new ListView<>();
 
     @FXML
-    private ListView<String> listviewAlleVarer = new ListView();
+    private ListView<Vare> listviewAlleVarer = new ListView<>();
 
-    public static void setListviewAlleVarer(LinkedList<Vare> nyListe) {
-        //listviewVare.getItems().clear();
-        for (Vare vare: nyListe) {
-            //listviewVare.getItems().add(vare.toString());
-        }
-    }
 
     @FXML
     private Button sletVare;
@@ -43,46 +36,46 @@ public class dyreHandelController {
     private Button tilføjVareTilOrdreKnap;
 
     @FXML void tilføjVareTilOrdre(){
-        System.out.println(listviewOrdre.getSelectionModel().getSelectedIndices().toString());
-        System.out.println(listviewAlleVarer.getSelectionModel().getSelectedIndices().toString());
+        System.out.println(listviewOrdre.getSelectionModel().getSelectedItem());
+        System.out.println(listviewAlleVarer.getSelectionModel().getSelectedItem());
 
-        Ordre denneOrdre = ordreListe.get( listviewOrdre.getSelectionModel().getSelectedIndices().get(0));
-        Vare denneVare = vareListe.get( listviewAlleVarer.getSelectionModel().getSelectedIndices().get(0));
+        Ordre denneOrdre = listviewOrdre.getSelectionModel().getSelectedItem();
+        Vare denneVare =  listviewAlleVarer.getSelectionModel().getSelectedItem();
 
 
 
-        denneOrdre.getOrdreVareListe().add(denneVare);
+        denneOrdre.addOrdreVareListe(denneVare);
 
         //LinkedList<Vare> ordreVare = ordreListe.get();
         listviewVare.getItems().clear();
         for (Vare vare: denneOrdre.getOrdreVareListe()) {
-            listviewVare.getItems().add(vare.toString());
+            listviewVare.getItems().add(vare);
         }
     }
 
     @FXML void ordreValgt (){
-        Ordre denneOrdre = ordreListe.get( listviewOrdre.getSelectionModel().getSelectedIndices().get(0));
-        Vare denneVare = vareListe.get( listviewOrdre.getSelectionModel().getSelectedIndices().get(0));
+        Ordre denneOrdre = listviewOrdre.getSelectionModel().getSelectedItem();
+        Vare denneVare = listviewVare.getSelectionModel().getSelectedItem();
 
         //denneOrdre.getOrdreVareListe().add(denneVare);
 
         listviewVare.getItems().clear();
         for (Vare vare: denneOrdre.getOrdreVareListe()) {
-            listviewVare.getItems().add(vare.toString());
+            listviewVare.getItems().add(vare);
         }
 
     }
 
     @FXML void sletVareActionEvent(ActionEvent event){
 
-        Ordre denneOrdre = ordreListe.get( listviewOrdre.getSelectionModel().getSelectedIndices().get(0));
-        Vare denneVare = vareListe.get( listviewOrdre.getSelectionModel().getSelectedIndices().get(0));
+        Ordre denneOrdre = listviewOrdre.getSelectionModel().getSelectedItem();
+        Vare denneVare = listviewVare.getSelectionModel().getSelectedItem();
 
-        denneOrdre.getOrdreVareListe().remove(denneVare);
+        denneOrdre.removeVareFromOrdre(denneVare);
 
         listviewVare.getItems().clear();
         for (Vare vare: denneOrdre.getOrdreVareListe()) {
-            listviewVare.getItems().add(vare.toString());
+            listviewVare.getItems().add(vare);
         }
 
 
@@ -93,7 +86,7 @@ public class dyreHandelController {
         DV.clickShow(event);
         listviewAlleVarer.getItems().clear();
         for (Vare vare: vareListe) {
-            listviewAlleVarer.getItems().add(vare.toString());
+            listviewAlleVarer.getItems().add(vare);
         }
 
     }
@@ -104,7 +97,7 @@ public class dyreHandelController {
         //listviewAlleVarer.getItems().clear();
 
         for (Ordre ordre: ordreListe) {
-            listviewOrdre.getItems().add(ordre.toString());
+            listviewOrdre.getItems().add(ordre);
         }
 
     }
@@ -129,7 +122,8 @@ public class dyreHandelController {
 
     for (Vare vare:
             vareListe) {
-        listviewAlleVarer.getItems().add(vare.toString());
+        System.out.println(vare +"added to AllWares");
+        listviewAlleVarer.getItems().add(vare);
     }
 
     Ordre ordre1 = new Ordre(1, "Alexander", 10_11_2022);
@@ -160,7 +154,7 @@ public class dyreHandelController {
 
 
     for (Ordre ordre: ordreListe) {
-        listviewOrdre.getItems().add(ordre.toString());
+        listviewOrdre.getItems().add(ordre);
         }
 
     }
